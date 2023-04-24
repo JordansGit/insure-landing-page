@@ -1,0 +1,69 @@
+.attribution { font-size: 11px; text-align: center; }
+.attribution a { color: hsl(228, 45%, 44%); }
+
+:root {
+  --dark-violet: hsl(256, 26%, 20%);
+  --grayish-blue: hsl(216, 30%, 68%);
+
+  --very-dark-violet: hsl(270, 9%, 17%);
+  --dark-grayish-violet: hsl(273, 4%, 51%);
+  --very-light-gray: hsl(0, 0%, 98%);
+}
+
+html {
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, h1, h2, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  max-width: 100%; 
+}
+
+/* ==================
+   Typography
+===================== */
+h1, h2 {
+  font-family: 'DM Serif Display', serif;
+}
+
+li, a, p {
+  font-family: 'Karla', sans-serif;
+}
+
+li, a {
+  font-weight: 700;
+}
+
+/* ==================
+   Layout
+===================== */
+
+/* Global */ 
+
+
+
+/* 
+Mobile Nav 
+  on click we will hide mobile menu & display nav-close-btn
+  the nav will appear below with a position: absolute or fixed and a top: ... (whatever the height of header is). 
+    height: 100% or calc(100%-...)
+  we will have a nav-open-body class on body to remove scroll. 
+
+  @ wider screens, we hide mobile-menu & close-btn, 
+    give nav a position of initial 
+
+  header is display: flex / grid. 
+*/ 
