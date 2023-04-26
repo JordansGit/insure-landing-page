@@ -1,18 +1,7 @@
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
 
-:root {
-  --dark-violet: hsl(256, 26%, 20%);
-  --grayish-blue: hsl(216, 30%, 68%);
-
-  --very-dark-violet: hsl(270, 9%, 17%);
-  --dark-grayish-violet: hsl(273, 4%, 51%);
-  --very-light-gray: hsl(0, 0%, 98%);
-}
-
-html {
-  font-size: 16px;
-}
+/* Resets */ 
 
 * {
   box-sizing: border-box;
@@ -33,8 +22,124 @@ img {
 }
 
 /* ==================
+   Colours
+===================== */
+
+:root {
+  --dark-violet: hsl(256, 26%, 20%); /* hero bg, banner bg, footer a text, main-btn:hover text, banner:hover text */
+  --grayish-blue: hsl(216, 30%, 68%); /* nothing, it's the .info icons but those icons already come w/ the color */ 
+
+  --very-dark-violet: hsl(270, 9%, 17%); /* .info h1, h2, .header-btn, header-nav:hover text, social-icons:hover */ 
+  --dark-grayish-violet: hsl(273, 4%, 51%); /* header nav li/a, .info p, footer nav li (not a). */ 
+  --very-light-gray: hsl(0, 0%, 98%); /* header bg, main bg, hero text, banner text, banner btn text & border, main-btn:hover bg, banner:hover bg */ 
+}
+
+header, main {
+  background: white;
+}
+
+footer {
+  background: var(--very-light-gray); 
+}
+
+
+.hero, .banner {
+  color: var(--very-light-gray);
+  background: var(--dark-violet); 
+}
+
+.hero-title, .banner-title {
+  color: white;
+}
+
+.card-body, footer .nav-item {
+  color: var(--dark-grayish-violet);
+}
+
+.header-nav {
+  background: var(--very-dark-violet);
+}
+
+header .nav-link {
+  color: white;
+}
+
+header .header-btn {
+  border: 1px solid white;
+}
+
+@media (min-width: 600px) {
+  .header-nav {
+    background: initial;
+  }
+  header .nav-link {
+    color: var(--dark-grayish-violet);
+  }
+  header .header-btn {
+    color: var(--very-dark-violet);
+    border: 1px solid var(--very-dark-violet);
+  }
+}
+
+.info-title, .card-title {
+  color: var(--very-dark-violet);
+}
+
+.main-btn {
+  color: var(--very-light-gray); 
+  border: 1px solid var(--very-light-gray);
+}
+
+footer .nav-link {
+  color: var(--dark-violet); 
+}
+
+
+
+/* Active States */ 
+
+.nav-link, .btn, .social-link {
+  cursor: pointer;
+}
+.main-btn:hover {
+  color: var(--very-dark-violet);
+  background: var(--very-light-gray);
+}
+
+@media (min-width: 600px) {
+  .nav-link:hover {
+    color: var(--very-dark-violet);
+  }  
+}
+
+.header-btn:hover {
+  color: var(--very-light-gray);
+  background: var(--very-dark-violet);
+}
+
+footer .nav-link:hover {
+  text-decoration: underline var(--dark-violet); 
+}
+
+.social-link:hover svg path, .social-link:focus svg path {
+  fill: var(--very-dark-violet);
+}
+
+/* mobile nav 
+  color: var(--very-light-gray);
+  background: var(--very-dark-violet);
+
+  header-btn: border: 1px solid var(--very-light-gray); 
+*/ 
+
+
+/* ==================
    Typography
 ===================== */
+
+html {
+  font-size: 16px;
+}
 
 h1, h2 {
   font-family: 'DM Serif Display', serif;
@@ -84,17 +189,30 @@ body {
   }
 }
 
-.img-desktop {
+.img-mobile-lrg, .img-desktop {
   display: none;
+}
+
+@media (min-width: 375px) {
+  .img-mobile-lrg {
+    display: inline-block;
+    width: 100%;
+  }
+  .img-mobile-sml {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
   .img-desktop {
     display: inline-block;
   }
-  .img-mobile {
+  .img-mobile-sml, .img-mobile-lrg {
     display: none;
   }
+}
+
+@media (min-width: 600px) {
   .hero-img {
     order: 1;
     justify-self: end;
@@ -111,7 +229,7 @@ body {
 @media (min-width: 600px) {
   .header {
     grid-template-areas: 
-      "logo logo nav nav"
+      "logo nav nav nav"
   }
 }
 
@@ -143,7 +261,27 @@ body {
 
 /* Nav */ 
 
+.header-nav {
+  display: none;
+}
+
+.header-nav {
+  display: block;
+  /* position: absolute or fixed;
+  top: the height of .header: 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; -> might not be necessary
+  height: calc(100% - the number in top); -> might not be necessary
+  */
+}
+
 @media (min-width: 600px) {
+  .header-nav {
+    display: block;
+    position: initial;
+  }
   .header-nav .nav-list {
     display: flex;
   }
@@ -162,13 +300,21 @@ body {
   }
   .hero-img {
     grid-column: span 2;
+    position: initial;
+    margin-bottom: -200px;
+  }
+  .hero {
+    margin-bottom: 200px;
   }
 }
+
+
 
 /* Info */
 @media (min-width: 600px) {
   .info-cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }  
 }
 
@@ -194,6 +340,7 @@ body {
 /* Footer */ 
 .social-list {
   display: flex;
+  align-items: center;
 }
 
 @media (min-width: 600px) {
@@ -208,8 +355,6 @@ body {
     grid-column: span 1;
   }
 }
-
-
 
 /* 
 Mobile Nav 
