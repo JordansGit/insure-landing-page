@@ -98,7 +98,7 @@ footer .nav-link {
 
 /* Active States */ 
 
-.nav-link, .btn, .social-link {
+.nav-link, .btn, .social-link, .mobile-menu, .nav-close-btn {
   cursor: pointer;
 }
 .main-btn:hover {
@@ -190,15 +190,30 @@ body {
 }
 
 .btn {
-  padding: 0.7rem 1.5rem;
+  padding: 0.7em 1.5em;
   font-weight: 400;
   display: inline-block;
+}
+
+.header-btn {
+  font-weight: 700;
 }
 
 .btn, footer .nav-item {
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 1px;
+}
+
+header .nav-item, header .header-btn {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+
+@media (min-width: 600px) {
+  header .nav-item, header .header-btn {
+    font-size: initial;
+  }
 }
 
 /* ==================
@@ -280,7 +295,6 @@ body {
   justify-self: start;
 }
 
-
 .mobile-menu, .nav-close-btn {
   grid-area: right-col;
   justify-self: end;
@@ -304,25 +318,36 @@ body {
 /* Nav */ 
 
 .header-nav {
-  display: none;
-}
-
-.header-nav {
-  /*display: block;*/ 
-  /* position: absolute or fixed;
-  top: the height of .header: 
-  left: 0;
+  position: fixed;
+  top: 76px; 
   right: 0;
   bottom: 0;
-  width: 100%; -> might not be necessary
-  height: calc(100% - the number in top); -> might not be necessary
-  */
+  left: 100%;
+  width: 100vw;
+  transform: translateX(0);
+  transition: transform 100ms;
+
+  padding-left: 8vw;
+  padding-right: 8vw;
+  padding-top: 1.3em;
+}
+
+header .nav-item {
+  padding: 0.7em;
+  margin: 0.7em;
+}
+header .nav-item:last-child {
+  padding: 0.2rem;
+}
+header .header-btn {
+  width: 100%;
 }
 
 @media (min-width: 600px) {
   .header-nav {
-    display: block;
     position: initial;
+    width: initial;
+    padding: initial;
   }
   .header-nav .nav-list {
     display: flex;
@@ -330,10 +355,32 @@ body {
   .header-nav {
     justify-self: end;
   }
+  header .nav-item {
+    margin: initial;
+    padding: initial;
+  }
+  header .header-btn {
+    width: initial;
+  }  
+}
+
+.nav-open-nav {
+  transform: translateX(-100%);
+}
+
+.nav-open-body {
+  overflow: hidden;
+}
+
+.nav-open-mobile-menu {
+  display: none;
+}
+
+.nav-open-close-btn {
+  display: block;
 }
 
 /* Main */ 
-
 
 /* Hero */ 
 
@@ -503,8 +550,9 @@ Background Design Images
 
 To do: 
   mobile nav 
-  typography 
-  layout widths, heights, paddings, margins 
   js 
+  desktop: 
+    typography 
+    layout widths, heights, paddings, margins 
   add bg pattern images 
 */ 
